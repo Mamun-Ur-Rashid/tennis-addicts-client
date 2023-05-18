@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 
 const Login = () => {
-    const {signIn} = useContext(AuthContext);
+    const {signIn, signInGoogle} = useContext(AuthContext);
     const [show, setShow] = useState();
     const handleLogin =(event) =>{
         event.preventDefault();
@@ -21,7 +21,13 @@ const Login = () => {
         .catch(error =>{
             console.log(error);
         })
-        
+    }
+    const handlerSignInGoogle = () => {
+        signInGoogle()
+        .then(()=>{})
+        .catch(error => {
+            console.log(error);
+        })
     }
     return (
         <div>
@@ -65,7 +71,7 @@ const Login = () => {
                                             <input className="btn btn-primary" type="submit" value="Login" />
                                         </div>
                                     </form>
-                                    <button onClick={""} className="border-emerald-400 border-2 p-2 rounded-lg my-3 ">
+                                    <button onClick={handlerSignInGoogle} className="border-emerald-400 border-2 p-2 rounded-lg my-3 ">
                                         <small className='text-lg inline-flex items-center gap-2'><FaGoogle className='text-neutral-600'></FaGoogle>Google SignIn </small>
                                     </button>
                                     <p className='text-center'>Have an account? <Link to="/register" className='text-red-500' >Please Register</Link></p>
