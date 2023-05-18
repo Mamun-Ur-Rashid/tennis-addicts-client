@@ -21,7 +21,8 @@ const Navbar = () => {
         {
             user? <>
                 
-                <li><NavLink to='/bookings'>My Toys</NavLink></li>
+                <li><NavLink to='/myToys'>My Toys</NavLink></li>
+                <li><NavLink to='/addAToy'>Add A Toy</NavLink></li>
                 <div className="tooltip tooltip-bottom inline-flex" data-tip={user?.displayName}>
                 <img className=' w-14 h-14  rounded-full border-2 ml-2' src={user.photoURL} alt="" />
                 </div>
