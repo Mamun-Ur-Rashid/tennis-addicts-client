@@ -28,7 +28,7 @@ const UpdateToy = () => {
                 })
                 .then(res => res.json())
                 .then(result => {
-                    console.log(result)
+                    // console.log(result)
                     if(result.modifiedCount>0){
                         Swal.fire(
                             'Updated!',
