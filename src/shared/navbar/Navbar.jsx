@@ -1,23 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Navbar = () => {
+    const {user, logOut} = useContext(AuthContext);
+
+    const handlerLogOut = () => {
+        logOut()
+        .then(() =>{
+            alert("Successfully logOut!!")
+        })
+        .catch(error =>{
+            console.log(error);
+        })
+    }
     const navItems = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allToys'>All Toys</NavLink></li>
         <li><NavLink to='/blog'>Blogs</NavLink></li>
-        {/* {
-            user?.email && user.photoURL ? <>
-                <li><NavLink to='/bookings'>MyBookings</NavLink></li>
-                <img className='h-10, w-10  rounded-full border-2 ml-2' src={user.photoURL} alt="" />
-                <li><Link to='/login' onClick={handlerLogOut}>Log Out</Link></li>
+        {
+            user? <>
+                
+                <li><NavLink to='/bookings'>My Toys</NavLink></li>
+                <div className="tooltip tooltip-bottom inline-flex" data-tip={user?.displayName}>
+                <img className=' w-14 h-14  rounded-full border-2 ml-2' src={user.photoURL} alt="" />
+                </div>
+                <li><Link to='/login' onClick={handlerLogOut}>Log Out</Link></li> 
             </>
                 : <li><NavLink to='/login'>SignIn</NavLink></li>
-        } */}
+        }
     </>
     return (
         <div>
-            <div className="navbar bg-base-100 h-24">
+            <div className="navbar bg-base-100 h-14">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -35,9 +50,6 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1">
                         {navItems}
                     </ul>
-                </div>
-                <div className="navbar-end">
-                    <NavLink><button className="btn btn-outline btn-warning">Appointment</button></NavLink>
                 </div>
             </div>
         </div>

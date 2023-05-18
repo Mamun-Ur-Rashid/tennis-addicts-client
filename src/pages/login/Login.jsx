@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 
 const Login = () => {
-    const {createUser} = useContext(AuthContext);
+    const {signIn} = useContext(AuthContext);
     const [show, setShow] = useState();
     const handleLogin =(event) =>{
         event.preventDefault();
@@ -13,10 +13,10 @@ const Login = () => {
         const password = form.password.value;
         console.log(email,password)
 
-        createUser(email, password)
-        .then(result =>{
-            const LoginUser = result.user;
-            console.log(LoginUser);
+        signIn(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log("login page", user);
         })
         .catch(error =>{
             console.log(error);
