@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaEyeSlash, FaGoogle} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../provider/AuthProvider';
+
 const Login = () => {
+    const {createUser} = useContext(AuthContext);
     const [show, setShow] = useState();
     const handleLogin =(event) =>{
         event.preventDefault();
@@ -9,6 +12,16 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email,password)
+
+        createUser(email, password)
+        .then(result =>{
+            const LoginUser = result.user;
+            console.log(LoginUser);
+        })
+        .catch(error =>{
+            console.log(error);
+        })
+        
     }
     return (
         <div>
