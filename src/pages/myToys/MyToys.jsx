@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 const MyToys = () => {
     const { user } = useContext(AuthContext);
     const [toys, setToys] = useState([]);
+    const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         fetch(`http://localhost:5000/myToys/${user?.email}`)
@@ -15,6 +16,13 @@ const MyToys = () => {
                 setToys(data);
             })
     }, [user])
+
+    // search by toy name function
+    const handleSearch = () => {
+        fetch(`http://localhost:5000/toySearchByName/${searchText}`)
+        .then(res => res.json())
+        .then( data => setToys(data))
+    };
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -30,28 +38,40 @@ const MyToys = () => {
                 fetch(`http://localhost:5000/toys/${id}`, {
                     method: 'DELETE',
                 })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    if(data.deletedCount>0){
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
-                        const remaining = toys.filter(toy => toy._id !== id);
-                        setToys(remaining);
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            const remaining = toys.filter(toy => toy._id !== id);
+                            setToys(remaining);
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             }
         })
     }
     return (
         <div className='container my-16'>
-            <h1 className='text-center text-3xl font-bold my-5'>MY Toys</h1>
+            <h1 className='text-center text-3xl font-bold my-5'>My Toys</h1>
+            <div className='flex justify-center mb-10'>
+                <div className="form-control">
+                    <div className="input-group">
+                        <input
+                        onChange={(e) => setSearchText(e.target.value)} 
+                        type="text" placeholder="Search…" className="input input-bordered" />
+                        <button onClick={handleSearch} className="btn btn-square">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -83,8 +103,8 @@ const MyToys = () => {
                                     <td>{toy.price}</td>
                                     <td>{toy.rating}</td>
                                     <td>{toy.quantity}</td>
-                                    <td><Link to={`/updateToy/${toy._id}`}><button>Update</button></Link></td>
-                                    <td><button onClick={() => handleDelete(toy._id)}>Delete</button></td>
+                                    <td><Link to={`/updateToy/${toy._id}`}><button className='btn btn-outline'>Update</button></Link></td>
+                                    <td><button onClick={() => handleDelete(toy._id)} className='btn btn-outline'>Delete</button></td>
                                     <td>{toy.description}</td>
                                 </tr>))
                         }
