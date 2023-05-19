@@ -3,6 +3,7 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [toys, setToys] = useState([]);
@@ -14,30 +15,7 @@ const Home = () => {
                 setToys(data);
             })
     }, [activeTab])
-    // const [activeTabIndex, setActiveTabIndex] = useState(0);
-    // console.log(toys)
-
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/allToys/${getActiveTab()}`)
-    //         .then(res => res.json())
-    //         .then(data => setToys(data))
-    //         .catch(error => {
-    //             console.log(error);
-    //         })
-    // }, [activeTabIndex])
-
-    // // const handleTabSelect = (index) => {
-    // //     const category =index === 0 ? "Tennis Rackets" : index === 1 ? "Tennis Balls" : "Tennis Accessories";
-    // //     setActiveTab(category);
-    // // }
-    // const getActiveTab = () => {
-    //     const categories = ["Tennis Rackets", "Tennis Balls", "Tennis Accessories"];
-    //     return categories[activeTabIndex];
-    // };
-
-    // const handleTabSelect = (index) => {
-    //     setActiveTabIndex(index);
-    // };
+    
     const handleTabSelect = (tabName) => {
         setActiveTab(tabName);
     };
@@ -81,7 +59,7 @@ const Home = () => {
 
                                         </div>
                                         <div className="">
-                                            <button className="btn btn-primary mt-10">View Details</button>
+                                            <Link to={`/singleToy/${toy._id}`}><button className="btn btn-primary mt-10">View Details</button></Link>
                                         </div>
                                     </div>
                                 </div>
