@@ -1,11 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { FaEyeSlash, FaGoogle} from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 
 const Login = () => {
     const {signIn, signInGoogle} = useContext(AuthContext);
     const [show, setShow] = useState();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const handleLogin =(event) =>{
         event.preventDefault();
         const form = event.target;
@@ -16,6 +19,7 @@ const Login = () => {
         signIn(email, password)
         .then(result => {
             const user = result.user;
+            navigate(from, {replace: true});
             console.log("login page", user);
         })
         .catch(error =>{

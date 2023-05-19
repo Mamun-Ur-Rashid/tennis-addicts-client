@@ -4,6 +4,8 @@ import 'react-tabs/style/react-tabs.css';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
     const [toys, setToys] = useState([]);
@@ -15,10 +17,12 @@ const Home = () => {
                 setToys(data);
             })
     }, [activeTab])
-    
+
     const handleTabSelect = (tabName) => {
         setActiveTab(tabName);
     };
+    // react toast
+    const notify = () => toast("You have to log in first to view details");
     return (
         <div className='my-6 bg-[#BFD3EE] p-10'>
             <h1 className='text-center text-5xl font-bold my-4 mb-8'>Shop by Categories</h1>
@@ -59,7 +63,10 @@ const Home = () => {
 
                                         </div>
                                         <div className="">
-                                            <Link to={`/singleToy/${toy._id}`}><button className="btn btn-primary mt-10">View Details</button></Link>
+                                          <div>
+                                          <Link to={`/singleToy/${toy._id}`}><button onClick={notify} className="btn btn-primary mt-10">View Details</button></Link>
+                                          <ToastContainer />
+                                          </div>
                                         </div>
                                     </div>
                                 </div>

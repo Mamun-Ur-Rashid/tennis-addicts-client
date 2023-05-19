@@ -11,7 +11,7 @@ const SingleToy = () => {
             <h1 className='text-center text-4xl font-bold underline pt-6'>{toyName} Details</h1>
             <div className="hero ">
                 <div className="hero-content flex-col lg:flex-row gap-8">
-                    <img src={image} className="max-w-sm rounded-lg shadow-2xl" />
+                    <img  src={image} className="max-w-sm rounded-lg shadow-2xl h-96" />
                     <div className='space-y-4 p-6' >
                         <h1 className="text-5xl font-bold">{toyName}</h1>
                         <p className="">Price: {price}</p>
