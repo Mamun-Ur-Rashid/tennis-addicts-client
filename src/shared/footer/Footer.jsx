@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from '../../assets/logotennis.png'
+
 import { FaTwitterSquare, FaInstagramSquare, FaFacebook } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <div className='my-10 bg-[#1B1A1A] text-white p-6'>
+        <div className='my-10 bg-[#787885] text-white p-6'>
             <footer className="footer p-10  text-white">
                 <div>
-                    <img className='h-10' src={logo} alt="" />
+                    <img className='h-10' src="https://i.ibb.co/SKHhJLW/tennis-player-1.png"  alt="" />
                     <p>Tennis Addicts Shop.<br />Providing reliable tech since 2002</p>
                     <p>Gulshan 1212</p>
                 </div>
@@ -15,7 +15,7 @@ const Footer = () => {
                     <span className="footer-title">Services</span>
                     <a className="link link-hover">Products</a>
                     <a className="link link-hover">Best Tennis Rackets</a>
-                    <a className="link link-hover">Online Bye</a>
+                    <a className="link link-hover">Online Buy</a>
                     <a className="link link-hover">Good Services</a>
                 </div>
                 <div>

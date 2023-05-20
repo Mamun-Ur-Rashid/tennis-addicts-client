@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-awesome-slider/dist/custom-animations/cube-animation.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 
@@ -20,6 +22,7 @@ const Home = () => {
             .then(data => {
                 setToys(data);
             })
+            AOS.init();
     }, [activeTab])
 
     const handleTabSelect = (tabName) => {
@@ -34,9 +37,11 @@ const Home = () => {
             .then(res => res.json())
             .then(result => {
                 setImages(result);
+                AOS.init();
             })
     }, [])
 
+    
     return (
         <div className='mt-10'>
             <div>
@@ -123,10 +128,11 @@ const Home = () => {
             {/* gallary section */}
             <section className='my-10 bg-[#BFD3EF] p-8 w-3/4 mx-auto'>
                 <h2 className='text-center text-3xl font-bold mb-10'>Gallery of Tennis Addicts</h2>
-                <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+                <div  className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  '>
                     {
-                        images?.map((image, index) => <div key={index}>
-                            <div className="card w-56 h-72 bg-base-100 shadow-xl ">
+                        images?.map((image, index) => <div key={index} data-aos="fade-up" data-aos-delay="400"
+                        data-aos-duration="700" data-aos-offset="200">
+                            <div className='card w-56 h-72 bg-base-100 shadow-xl  '>
                                 <figure><img className='w-full object-cover ' src={image.img1} alt="Shoes" /></figure>
                                 <div className="card-body">
                                 </div>
@@ -161,7 +167,9 @@ const Home = () => {
                         <div className='grid md:grid-cols-2 gap-4 mt-10'>
                             {
                                 toys.map(toy => <div key={toy._id}>
-                                    <div className="card lg:card-side bg-base-100 shadow-xl p-5 flex justify-between">
+                                    <div className="card lg:card-side bg-base-100 shadow-xl p-5 flex justify-between" 
+                                    data-aos-delay="400"
+                                    data-aos-duration="700" data-aos-offset="200">
                                         <div><figure><img className='h-80 w-full' src={toy.image} alt="Album" /></figure></div>
                                         <div className="items-center mr-8 my-4 space-y-4">
                                             <p className='text-2xl font-bold '>{toy.toyName}</p>
@@ -188,6 +196,32 @@ const Home = () => {
                     </TabList>
                 </Tabs>
             </div>
+            {/* service section */}
+            <section className='my-14'>
+                <h2 className='text-center text-4xl font-bold mb-10'>Our Services </h2>
+                <div className='grid md:grid-cols-4 gap-4 mb-5'>
+                    <div className='border-r-2 p-2 space-y-2'>
+                        <img className='' src="https://i.ibb.co/26n3q3L/delivery-1.png" alt="" />
+                        <h4 className='text-2xl font-semibold'>Free Shipping</h4>
+                        <p>Convenient, affordable shipping for your online orders. Don't miss out on savings!</p>
+                    </div>
+                    <div className='border-r-2 p-2 space-y-2'>
+                        <img className='' src="https://i.ibb.co/w7M8rzF/parcel-return.png" alt="" />
+                        <h4 className='text-2xl font-semibold'>Returns Policy</h4>
+                        <p>Satisfaction guaranteed: Easy returns and hassle-free refunds for your peace of mind.</p>
+                    </div>
+                    <div className='border-r-2 p-2 space-y-2'>
+                        <img className='' src="https://i.ibb.co/bryQ3Mn/gift-box-1.png" alt="" />
+                        <h4 className='text-2xl font-semibold'>Gift Cards</h4>
+                        <p>Perfect present: Give the gift of choice with our versatile and stylish gift cards.</p>
+                    </div>
+                    <div className='p-2 space-y-2'>
+                        <img className='' src="https://i.ibb.co/ygDsbnn/star-badge-1.png" alt="" />
+                        <h4 className='text-2xl font-semibold'>Best Quality</h4>
+                        <p>Experience excellence with our products, crafted to deliver the best</p>
+                    </div>
+                </div>
+            </section>
         </div>
     );
 };

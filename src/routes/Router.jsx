@@ -11,6 +11,7 @@ import SingleToy from "../shared/singleToy/SingleToy";
 import PrivateRouter from "./PrivateRouter";
 import ViewDetails from "../pages/viewDetails/ViewDetails";
 import ErrorPage from "../pages/errorPage/ErrorPage";
+import Blogs from "../pages/blogs/Blogs";
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path:'/register',
                 element:<Register></Register>
+            },
+            {
+                path:'/blog',
+                element:<Blogs></Blogs>
             },
             {
                 path:'/myToys',
