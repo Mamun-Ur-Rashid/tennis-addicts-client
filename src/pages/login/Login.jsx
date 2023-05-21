@@ -75,7 +75,7 @@ const Login = () => {
                                             <div className='form-control relative'> <input type={show ? 'text' : "password"} name='password' placeholder="password" className="input input-bordered" required /></div>
                                             <p onClick={() => setShow(!show)}>
                                                 {
-                                                    show ? <FaEyeSlash className='absolute top-[170px] right-16'></FaEyeSlash> : <FaEyeSlash className='absolute top-[170px] right-16'></FaEyeSlash>
+                                                    show ? <FaEyeSlash className='absolute top-[165px] right-16'></FaEyeSlash> : <FaEyeSlash className='absolute top-[170px] right-16'></FaEyeSlash>
                                                 }
                                             </p>
                                             {/* <label className="label">

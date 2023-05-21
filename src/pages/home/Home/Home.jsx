@@ -19,7 +19,7 @@ const Home = () => {
     AOS.init();
     useTitle("Home");
     useEffect(() => {
-        fetch(`http://localhost:5000/allToys/${activeTab}`)
+        fetch(`https://tennis-addicts-server.vercel.app/allToys/${activeTab}`)
             .then(res => res.json())
             .then(data => {
                 setToys(data);

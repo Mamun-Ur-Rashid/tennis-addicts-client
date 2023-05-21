@@ -10,7 +10,7 @@ const AddAToy = () => {
     useTitle("Add a Toy");
 
     const onSubmit = (data) => {
-        fetch('http://localhost:5000/post-Toys', {
+        fetch('https://tennis-addicts-server.vercel.app/post-Toys', {
             method: 'POST',
             headers:{'content-type': 'application/json'},
             body: JSON.stringify(data)

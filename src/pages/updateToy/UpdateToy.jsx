@@ -21,7 +21,7 @@ const UpdateToy = () => {
             confirmButtonText: 'Yes, Update it!'
           }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/toys/${toy?._id}`,{
+                fetch(`https://tennis-addicts-server.vercel.app/toys/${toy?._id}`,{
                     method: "PUT",
                     headers: {
                         'content-type': 'application/json'

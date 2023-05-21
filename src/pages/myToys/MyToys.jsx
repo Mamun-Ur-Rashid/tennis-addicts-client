@@ -13,7 +13,7 @@ const MyToys = () => {
     useTitle("My Toys");
     console.log(toys)
     useEffect(() => {
-        fetch(`http://localhost:5000/myToys/${user?.email}`)
+        fetch(`https://tennis-addicts-server.vercel.app/myToys/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                  console.log(data);
@@ -26,7 +26,7 @@ const MyToys = () => {
 
     // search by toy name function
     const handleSearch = () => {
-        fetch(`http://localhost:5000/toySearchByName/${searchText}`)
+        fetch(`https://tennis-addicts-server.vercel.app/toySearchByName/${searchText}`)
         .then(res => res.json())
         .then( data => setToys(data))
     };
@@ -42,7 +42,7 @@ const MyToys = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/toys/${id}`, {
+                fetch(`https://tennis-addicts-server.vercel.app/toys/${id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())

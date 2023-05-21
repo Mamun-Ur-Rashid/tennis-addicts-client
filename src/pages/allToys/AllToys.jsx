@@ -7,7 +7,7 @@ const AllToys = () => {
     useTitle("All Toys");
     // console.log(toys)
     useEffect(() => {
-        fetch('http://localhost:5000/allToys')
+        fetch('https://tennis-addicts-server.vercel.app/allToys')
             .then(res => res.json())
             .then(data => setToys(data))
             .catch(error => {

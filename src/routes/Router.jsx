@@ -47,7 +47,7 @@ const router = createBrowserRouter([
             {
                 path:'/updateToy/:_id',
                 element:<UpdateToy></UpdateToy>,
-                loader: ({params}) => fetch(`http://localhost:5000/toys/${params._id}`)
+                loader: ({params}) => fetch(`https://tennis-addicts-server.vercel.app/toys/${params._id}`)
 
             },
             {
@@ -57,12 +57,12 @@ const router = createBrowserRouter([
             {
                 path:'/singleToy/:_id',
                 element:<PrivateRouter><SingleToy></SingleToy></PrivateRouter>,
-                loader: ({params}) => fetch(`http://localhost:5000/toys/${params._id}`)
+                loader: ({params}) => fetch(`https://tennis-addicts-server.vercel.app/toys/${params._id}`)
             },
             {
                 path:'/viewDetails/:_id',
                 element:<PrivateRouter><ViewDetails></ViewDetails></PrivateRouter>,
-                loader: ({params}) => fetch(`http://localhost:5000/toys/${params._id}`)
+                loader: ({params}) => fetch(`https://tennis-addicts-server.vercel.app/toys/${params._id}`)
             }
 
         ]
