@@ -9,20 +9,23 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'react-awesome-slider/dist/custom-animations/cube-animation.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
+import useTitle from '../../../hook/useTitle';
 
 
 const Home = () => {
     const [toys, setToys] = useState([]);
     const [activeTab, setActiveTab] = useState("tass")
     const [images, setImages] = useState([])
+    AOS.init();
+    useTitle("Home");
     useEffect(() => {
         fetch(`http://localhost:5000/allToys/${activeTab}`)
             .then(res => res.json())
             .then(data => {
                 setToys(data);
+
             })
-            AOS.init();
+
     }, [activeTab])
 
     const handleTabSelect = (tabName) => {
@@ -37,11 +40,8 @@ const Home = () => {
             .then(res => res.json())
             .then(result => {
                 setImages(result);
-                AOS.init();
             })
     }, [])
-
-    
     return (
         <div className='mt-10'>
             <div>
@@ -125,15 +125,20 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            {/* gallary section */}
-            <section className='my-10 bg-[#BFD3EF] p-8 w-3/4 mx-auto'>
+            {/* slider */}
+            <section>
+
+            </section>
+            {/* gallery section */}
+            <section className='my-10 bg-[#BFD3EF] scroll-m-2 md:p-8 md:w-3/4 mx-auto'>
                 <h2 className='text-center text-3xl font-bold mb-10'>Gallery of Tennis Addicts</h2>
-                <div  className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  '>
+                <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  '>
                     {
-                        images?.map((image, index) => <div key={index} data-aos="fade-up" data-aos-delay="400"
-                        data-aos-duration="700" data-aos-offset="200">
-                            <div className='card w-56 h-72 bg-base-100 shadow-xl  '>
-                                <figure><img className='w-full object-cover ' src={image.img1} alt="Shoes" /></figure>
+                        images?.map((image, index) => <div key={index} >
+                            <div className='card w-full h-72 bg-base-100 shadow-xl' data-aos="fade-up" data-aos-delay="400"
+                                data-aos-duration="700" data-aos-offset="200"
+                                >
+                                <figure><img className='w-48 pt-2 object-center ' src={image.img1} alt="Shoes" /></figure>
                                 <div className="card-body">
                                 </div>
                             </div>
@@ -142,7 +147,7 @@ const Home = () => {
                 </div>
             </section>
             {/* category by shop section */}
-            <div className='my-6 bg-[#BFD3EE] p-10'>
+            <div className='my-6 bg-[#BFD3EE] sm:p-2 md:p-10'>
                 <h1 className='text-center text-5xl font-bold my-4 mb-8'>Shop by Categories</h1>
                 <Tabs className="p-2">
                     <TabList className='text-center'>
@@ -167,9 +172,9 @@ const Home = () => {
                         <div className='grid md:grid-cols-2 gap-4 mt-10'>
                             {
                                 toys.map(toy => <div key={toy._id}>
-                                    <div className="card lg:card-side bg-base-100 shadow-xl p-5 flex justify-between" 
-                                    data-aos-delay="400"
-                                    data-aos-duration="700" data-aos-offset="200">
+                                    <div className="card lg:card-side bg-base-100 shadow-xl p-5 flex justify-between"
+                                        data-aos="fade-up" data-aos-delay="400"
+                                        data-aos-duration="700" data-aos-offset="200">
                                         <div><figure><img className='h-80 w-full' src={toy.image} alt="Album" /></figure></div>
                                         <div className="items-center mr-8 my-4 space-y-4">
                                             <p className='text-2xl font-bold '>{toy.toyName}</p>
@@ -196,10 +201,47 @@ const Home = () => {
                     </TabList>
                 </Tabs>
             </div>
+            {/* upcoming products */}
+            <section className='my-10 bg-slate-400  sm:p-0 md:p-10'>
+                <h2 className='text-center text-4xl font-bold mb-8 '>UpComing Products</h2>
+                <div className='grid md:grid-cols-3 gap-4'>
+                    <div className="card card-side w-96  bg-lime-300 ">
+                        <figure><img src="https://i.ibb.co/x6msP3N/latest4.jpg" alt="car!" /></figure>
+                        <div className="card-body ml-4">
+                            <h2 className="card-title">Lacoste</h2>
+                            <p>Price: 2000 BDT</p>
+                            <div className="card-actions justify-end">
+                                <button className="btn btn-outline hover:bg-[#BFD3EE]">View Details!</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="card card-side w-96  bg-lime-300">
+                        <figure><img src="https://i.ibb.co/NZ6CJpV/latest1.jpg" alt="car!" /></figure>
+                        <div className="card-body ml-4">
+                            <h2 className="card-title">Lacoste</h2>
+                            <p>Price: 2000 BDT</p>
+                            <div className="card-actions justify-end">
+                                <button className="btn btn-outline hover:bg-[#BFD3EE]">View Details!</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card card-side w-96  bg-lime-300">
+                        <figure><img src="https://i.ibb.co/7zYKxNR/latest2.jpg" alt="car!" /></figure>
+                        <div className="card-body ml-4">
+                            <h2 className="card-title">Lacoste</h2>
+                            <p>Price: 2000 BDT</p>
+                            <div className="card-actions justify-end">
+                                <button className="btn btn-outline hover:bg-[#BFD3EE]">View Details!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             {/* service section */}
             <section className='my-14'>
-                <h2 className='text-center text-4xl font-bold mb-10'>Our Services </h2>
-                <div className='grid md:grid-cols-4 gap-4 mb-5'>
+                <h2 className='text-center text-4xl font-bold mb-10 '>Our Services </h2>
+                <div className='grid md:grid-cols-4 gap-4 mb-5 '>
                     <div className='border-r-2 p-2 space-y-2'>
                         <img className='' src="https://i.ibb.co/26n3q3L/delivery-1.png" alt="" />
                         <h4 className='text-2xl font-semibold'>Free Shipping</h4>

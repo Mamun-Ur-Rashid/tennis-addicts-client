@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FaTwitterSquare, FaInstagramSquare, FaFacebook } from "react-icons/fa";
+import { FaTwitterSquare, FaInstagramSquare, FaFacebook, FaPhone } from "react-icons/fa";
 
 const Footer = () => {
     return (
@@ -10,6 +10,10 @@ const Footer = () => {
                     <img className='h-10' src="https://i.ibb.co/SKHhJLW/tennis-player-1.png"  alt="" />
                     <p>Tennis Addicts Shop.<br />Providing reliable tech since 2002</p>
                     <p>Gulshan 1212</p>
+                    <p>Contact:</p>
+                    <p className='inline-flex items-center gap-2'><FaPhone />+880 01945829635</p>
+                    <p className='inline-flex items-center gap-2'><FaPhone /> +96800715222 </p>
+                    
                 </div>
                 <div>
                     <span className="footer-title">Services</span>

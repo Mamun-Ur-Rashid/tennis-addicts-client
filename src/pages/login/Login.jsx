@@ -2,45 +2,55 @@ import React, { useContext, useState } from 'react';
 import { FaEyeSlash, FaGoogle} from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
+import useTitle from '../../hook/useTitle';
 
 const Login = () => {
     const {signIn, signInGoogle} = useContext(AuthContext);
     const [show, setShow] = useState();
+    const [error , setError] =useState("");
+    const [success, setSuccess] =useState("");
+    useTitle("Login");
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+
+   
     const handleLogin =(event) =>{
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email,password)
+        setError('')
+        setSuccess('');
 
         signIn(email, password)
         .then(result => {
             const user = result.user;
             navigate(from, {replace: true});
             console.log("login page", user);
+            setSuccess("User Successfully Login!!");
+            form.reset();
         })
         .catch(error =>{
-            console.log(error);
+            setError(error.message);
         })
     }
     const handlerSignInGoogle = () => {
         signInGoogle()
         .then(()=>{})
         .catch(error => {
-            console.log(error);
+            setError(error.message);
         })
     }
     return (
         <div>
-            <div className="  bg-base-200 mt-4 ">
+            <div className="  bg-base-200 my-14">
                 <div className='grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-16'>
                     <div className='h-[500px] md:pl-36 flex justify-center items-center'>
-                        <img className='h-[350px]' src="" alt="" />
+                        <img className='h-[350px]' src="https://i.ibb.co/VSjd4JG/login-removebg-preview.png" alt="" />
                     </div>
-                    <div className=' md:mr-36 shadow border mt-4'>
+                    <div className=' md:mr-36 shadow-2xl my-2 border mt-4'>
                         <div className="hero-content flex-col ">
                             <div className="text-center mt-4">
                                 <h1 className="text-5xl font-bold">Login</h1>
@@ -48,6 +58,8 @@ const Login = () => {
                             </div>
                             <div className="card  w-full">
                                 <div className="card-body">
+                                    <p className='text-center text-xl text-warning'>{error}</p>
+                                    <p className='text-center text-xl text-success'>{success}</p>
                                     <form onSubmit={handleLogin}>
                                         <div className="form-control">
                                             <label className="label">

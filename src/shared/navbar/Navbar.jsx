@@ -28,7 +28,7 @@ const Navbar = () => {
                 </div>
                 <li><Link to='/login' onClick={handlerLogOut}>Log Out</Link></li> 
             </>
-                : <li><NavLink to='/login'>SignIn</NavLink></li>
+                : <li><NavLink to='/login'>LogIn</NavLink></li>
         }
     </>
     return (
@@ -43,7 +43,7 @@ const Navbar = () => {
                             {navItems}
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost normal-case text-2xl inline-flex gap-2 font-semibold">
+                    <Link to='/' className="btn btn-ghost normal-case text-3xl inline-flex gap-2 font-semibold text-[#1655a7]">
                         <img className='h-12' src={logo} alt="" /> TennisAddicts
                     </Link>
                 </div>

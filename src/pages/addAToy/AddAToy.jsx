@@ -2,10 +2,12 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import useTitle from '../../hook/useTitle';
 
 const AddAToy = () => {
     const { user } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
+    useTitle("Add a Toy");
 
     const onSubmit = (data) => {
         fetch('http://localhost:5000/post-Toys', {
@@ -42,11 +44,11 @@ const AddAToy = () => {
                     </div>
                     <div>
                         <label htmlFor="">Seller Email</label>
-                        <input className='form-control w-full border-2 p-2 rounded-lg border-slate-400 mt-2' {...register("sellerEmail")} required placeholder='Seller email' type='email' />
+                        <input className='form-control w-full border-2 p-2 rounded-lg border-slate-400 mt-2' {...register("sellerEmail")} required placeholder='Seller email' defaultValue={user?.sellerEmail} type='email' />
                     </div>
                     <div>
                         <label htmlFor="">Seller Name</label>
-                        <input className='form-control w-full border-2 p-2 rounded-lg border-slate-400 mt-2' {...register("sellerName")} required placeholder='Seller name'  type='text' />
+                        <input className='form-control w-full border-2 p-2 rounded-lg border-slate-400 mt-2' {...register("sellerName")} required placeholder='Seller name' defaultValue={user?.sellerName}  type='text' />
                     </div>
                     <div>
                         <label htmlFor="">Toy Image</label>

@@ -9,4 +9,6 @@
   .default{
     @apply font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600
   } */
-  
+  .image1{
+    @apply h-60 w-44
+  }

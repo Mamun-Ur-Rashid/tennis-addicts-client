@@ -2,9 +2,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useTitle from '../../hook/useTitle';
 
 const UpdateToy = () => {
     const toy = useLoaderData();
+    useTitle("UpdateToy");
     // console.log(toy);
     const { register, handleSubmit } = useForm();
 

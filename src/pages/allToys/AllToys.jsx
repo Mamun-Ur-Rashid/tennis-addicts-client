@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useTitle from '../../hook/useTitle';
 
 const AllToys = () => {
     const [toys, setToys] = useState([]);
-    console.log(toys)
+    useTitle("All Toys");
+    // console.log(toys)
     useEffect(() => {
         fetch('http://localhost:5000/allToys')
             .then(res => res.json())

@@ -2,18 +2,25 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useTitle from '../../hook/useTitle';
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 const MyToys = () => {
     const { user } = useContext(AuthContext);
     const [toys, setToys] = useState([]);
     const [searchText, setSearchText] = useState("");
-
+    useTitle("My Toys");
+    console.log(toys)
     useEffect(() => {
         fetch(`http://localhost:5000/myToys/${user?.email}`)
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
+                 console.log(data);
                 setToys(data);
+            })
+            .catch(error => {
+                console.log(error);
             })
     }, [user])
 
@@ -101,7 +108,14 @@ const MyToys = () => {
                                     <td>{toy.sellerEmail}</td>
                                     <td>{toy.category}</td>
                                     <td>{toy.price}</td>
-                                    <td>{toy.rating}</td>
+                                    <td> <div className='flex justify-center items-center gap-4'>
+                                                {/* <span>{toy.rating}</span> */}
+                                                <Rating
+                                                    style={{ maxWidth: 150 }}
+                                                    value={Math.round(toy.rating) || 0} readOnly>
+                                                </Rating>
+
+                                            </div></td>
                                     <td>{toy.quantity}</td>
                                     <td><Link to={`/updateToy/${toy._id}`}><button className='btn btn-outline'>Update</button></Link></td>
                                     <td><button onClick={() => handleDelete(toy._id)} className='btn btn-outline'>Delete</button></td>
