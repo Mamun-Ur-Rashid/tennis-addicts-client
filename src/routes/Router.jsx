@@ -12,6 +12,7 @@ import PrivateRouter from "./PrivateRouter";
 import ViewDetails from "../pages/viewDetails/ViewDetails";
 import ErrorPage from "../pages/errorPage/ErrorPage";
 import Blogs from "../pages/blogs/Blogs";
+import Contact from "../pages/contact/Contact";
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             {
                 path:'/blog',
                 element:<Blogs></Blogs>
+            },
+            {
+                path:'/contact',
+                element: <Contact></Contact>
             },
             {
                 path:'/myToys',

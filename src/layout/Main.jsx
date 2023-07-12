@@ -6,7 +6,7 @@ import Navbar from '../shared/navbar/Navbar';
 
 const Main = () => {
     return (
-        <div>
+        <div className='bg-gray-300'>
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>

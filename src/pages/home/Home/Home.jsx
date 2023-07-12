@@ -10,6 +10,7 @@ import 'react-awesome-slider/dist/custom-animations/cube-animation.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import useTitle from '../../../hook/useTitle';
+import Contact from '../../contact/Contact';
 
 
 const Home = () => {
@@ -43,10 +44,12 @@ const Home = () => {
             })
     }, [])
     return (
-        <div className='mt-10'>
+        <div className='mt-16'>
             <div>
                 {/* banner Section */}
-                <div className="carousel">
+                <div data-aos="zoom-in"
+                    data-aos-duration="1000"
+                    data-aos-delay="200" className="carousel">
                     <div id="slide1" className="carousel-item relative w-full h-[500px]">
                         <img src="https://i.ibb.co/cgwTCMF/cover6.png" className="w-full" />
                         <div className="absolute h-full left-0 right-0 rounded-2xl flex items-center bottom-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] ">
@@ -130,14 +133,14 @@ const Home = () => {
 
             </section>
             {/* gallery section */}
-            <section className='my-10 bg-[#BFD3EF] scroll-m-2 md:p-8 md:w-3/4 mx-auto'>
+            <section className='my-20 bg-[#BFD3EF] scroll-m-2 md:p-8 md:w-3/4 mx-auto'>
                 <h2 className='text-center text-3xl font-bold mb-10'>Gallery of Tennis Addicts</h2>
                 <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  '>
                     {
                         images?.map((image, index) => <div key={index} >
                             <div className='card w-full h-72 bg-base-100 shadow-xl' data-aos="fade-up" data-aos-delay="400"
                                 data-aos-duration="700" data-aos-offset="200"
-                                >
+                            >
                                 <figure><img className='w-48 pt-2 object-center ' src={image.img1} alt="Shoes" /></figure>
                                 <div className="card-body">
                                 </div>
@@ -147,7 +150,7 @@ const Home = () => {
                 </div>
             </section>
             {/* category by shop section */}
-            <div className='my-6 bg-[#BFD3EE] sm:p-2 md:p-10'>
+            <div className='my-20 bg-[#BFD3EE] sm:p-2 md:p-10'>
                 <h1 className='text-center text-5xl font-bold my-4 mb-8'>Shop by Categories</h1>
                 <Tabs className="p-2">
                     <TabList className='text-center'>
@@ -202,9 +205,15 @@ const Home = () => {
                 </Tabs>
             </div>
             {/* upcoming products */}
-            <section className='my-10 bg-slate-400  sm:p-0 md:p-10'>
-                <h2 className='text-center text-4xl font-bold mb-8 '>UpComing Products</h2>
-                <div className='grid md:grid-cols-3 gap-4'>
+            <section className='my-20 bg-slate-400  sm:p-0 md:p-10'>
+                <h2 data-aos="zoom-in"
+                    data-aos-duration="1000"
+                    data-aos-delay="200"
+                    className='text-center text-4xl font-bold mb-8 '>UpComing Products</h2>
+                <div data-aos="zoom-in"
+                    data-aos-duration="1000"
+                    data-aos-delay="400"
+                    className='grid md:grid-cols-3 gap-4'>
                     <div className="card card-side w-96  bg-lime-300 ">
                         <figure><img src="https://i.ibb.co/x6msP3N/latest4.jpg" alt="car!" /></figure>
                         <div className="card-body ml-4">
@@ -239,9 +248,15 @@ const Home = () => {
                 </div>
             </section>
             {/* service section */}
-            <section className='my-14'>
-                <h2 className='text-center text-4xl font-bold mb-10 '>Our Services </h2>
-                <div className='grid md:grid-cols-4 gap-4 mb-5 '>
+            <section className='my-20'>
+                <h2 data-aos="zoom-in"
+                    data-aos-duration="1000"
+                    data-aos-delay="200"
+                    className='text-center text-4xl font-bold mb-10 '>Our Services </h2>
+                <div data-aos="zoom-in"
+                    data-aos-duration="1000"
+                    data-aos-delay="400"
+                    className='grid md:grid-cols-4 gap-4 mb-5 '>
                     <div className='border-r-2 p-2 space-y-2'>
                         <img className='' src="https://i.ibb.co/26n3q3L/delivery-1.png" alt="" />
                         <h4 className='text-2xl font-semibold'>Free Shipping</h4>
@@ -264,6 +279,7 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+            <Contact></Contact>
         </div>
     );
 };
